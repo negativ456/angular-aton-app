@@ -1,0 +1,9 @@
+<mat-card class="rounded border-2 p-2">
+  <img class="w-full rounded" mat-card-image [src]="user.avatar" alt="avatar">
+  <mat-card-title>{{user.first_name}}</mat-card-title>
+  <mat-card-title>{{user.last_name}}</mat-card-title>
+  <mat-card-actions class="flex gap-4">
+    <button (click)="modalService.open(Modals.EDIT_USER, user)" mat-ripple class="px-4 py-2 bg-neutral-600 text-white rounded">Edit</button>
+    <button (click)="modalService.open(Modals.DELETE_USER, user)" mat-ripple class="px-4 py-2 bg-red-500 rounded text-white font-bold">&times;</button>
+  </mat-card-actions>
+</mat-card>

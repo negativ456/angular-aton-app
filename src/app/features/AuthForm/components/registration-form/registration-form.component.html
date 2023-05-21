@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="w-96 h-56 p-4 rounded bg-white gap-0.5 flex flex-col">
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input formControlName="email" matInput placeholder="email">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input type="password" formControlName="password" matInput placeholder="password">
+  </mat-form-field>
+  <button type="submit" class="rounded h-9 bg-cyan-300" mat-ripple>
+    <img *ngIf="isLoading$ | async; else text" class="h-full" src="assets/icons/loader.svg" alt="loader">
+    <ng-template #text>
+      Signup
+    </ng-template>
+  </button>
+</form>
+

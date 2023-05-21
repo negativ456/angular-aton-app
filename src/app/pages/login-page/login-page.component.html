@@ -1,0 +1,16 @@
+<div class="flex w-full h-full justify-center align-middle bg-gray-100">
+  <div class="flex flex-col mt-[50px]">
+    <mat-button-toggle-group>
+      <mat-button-toggle
+        *ngFor="let button of Object.values(AuthTabs)"
+        [value]="button"
+        (click)="changeTab(AuthTabs[button])">
+        {{button}}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <app-login-form *ngIf="selectedTab === AuthTabs.Login; else signUp"/>
+    <ng-template #signUp>
+      <app-registration-form/>
+    </ng-template>
+  </div>
+</div>

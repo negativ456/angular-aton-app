@@ -1,0 +1,14 @@
+<app-modal>
+  <div class="flex flex-col gap-2 items-center font-medium">
+    <p class="text-3xl">Are you sure ?</p>
+    <div class="flex gap-4">
+      <button (click)="deleteUser()" mat-ripple class="h-[38px] px-4 py-2 bg-green-400 rounded font-medium text-white">
+        <img *ngIf="isLoading$ | async; else text" class="h-full" src="assets/icons/loader.svg" alt="loader">
+        <ng-template #text>
+          Yes
+        </ng-template>
+      </button>
+      <button (click)="modalService.close()" mat-ripple class="px-4 py-2 bg-red-400 rounded font-medium text-white">No</button>
+    </div>
+  </div>
+</app-modal>
