@@ -3,11 +3,10 @@ import { ModalService } from '../../../../shared/lib/services/modal/modal.servic
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../model/types/user';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../../app.state';
-import { setIsLoading } from '../../../../shared/lib/state/common/common.actions';
-import { updateUserStart } from '../../model/state/user.action';
+import { AppState } from '../../../../app/app.state';
+import { setIsLoading, updateUserStart } from '../../model/state/user.action';
 import { Observable } from 'rxjs';
-import { getLoading } from '../../../../shared/lib/state/common/common.selectors';
+import { getUsersLoading } from '../../model/state/user.selectors';
 
 @Component({
   selector: 'app-edit-user-modal',
@@ -30,7 +29,7 @@ export class EditUserModalComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.isLoading$ = this.store.select(getLoading);
+    this.isLoading$ = this.store.select(getUsersLoading);
   }
 
   onEdit() {
@@ -39,7 +38,7 @@ export class EditUserModalComponent implements OnInit {
       first_name: this.form.value.firstName,
       last_name: this.form.value.lastName,
     };
-    this.store.dispatch(setIsLoading({ status: true }));
+    this.store.dispatch(setIsLoading({ isLoading: true }));
     this.store.dispatch(updateUserStart({ user: user as User }));
   }
 }

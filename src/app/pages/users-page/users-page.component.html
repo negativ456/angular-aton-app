@@ -2,6 +2,9 @@
 <div class="container mx-auto pt-20">
   <app-users-list [view]="view"/>
 </div>
-
+<div (click)="modalService.open(Modals.CREATE_USER)" class="cursor-pointer flex justify-center items-center w-16 h-16 fixed right-5 bottom-5 rounded-full text-2xl bg-green-400 text-white" mat-ripple>
+  +
+</div>
 <app-delete-user-modal *ngIf="(modalService.isVisible$ | async) && modalService.currentModal === Modals.DELETE_USER"/>
 <app-edit-user-modal *ngIf="(modalService.isVisible$ | async) && modalService.currentModal === Modals.EDIT_USER"/>
+<app-add-user-modal *ngIf="(modalService.isVisible$ | async) && modalService.currentModal === Modals.CREATE_USER"/>

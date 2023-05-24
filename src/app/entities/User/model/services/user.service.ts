@@ -16,10 +16,10 @@ interface UserResponse {
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<UserResponse> {
+  getUsers(page: number): Observable<UserResponse> {
     return this.http.get<UserResponse>('https://reqres.in/api/users', {
       params: new HttpParams({
-        fromObject: { per_page: 12 },
+        fromObject: { per_page: 6, page },
       }),
     });
   }
@@ -33,5 +33,14 @@ export class UserService {
 
   deleteUser(delUser: User): Observable<null> {
     return this.http.delete<null>(`https://reqres.in/api/users/${delUser.id}`);
+  }
+
+  createUser(
+    user: Omit<User, 'id' | 'email'>
+  ): Observable<{ id: number; createdAd: string }> {
+    return this.http.post<{ id: number; createdAd: string }>(
+      `https://reqres.in/api/users`,
+      user
+    );
   }
 }

@@ -7,6 +7,9 @@
   </ng-template>
 </div>
 
+<mat-paginator (page)="onPage($event)" [length]="(totalUsers$ | async)!" [pageSize]="6"/>
+
+
 <ng-template #table>
 <!--  <table mat-table [dataSource]="userService.users">-->
 

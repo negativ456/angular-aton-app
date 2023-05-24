@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../../app.state';
+import { AppState } from '../../../../app/app.state';
 import { Router } from '@angular/router';
 import { logout } from '../../../../features/AuthForm/model/store/auth.actions';
 import { Observable } from 'rxjs';

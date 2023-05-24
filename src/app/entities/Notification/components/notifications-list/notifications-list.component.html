@@ -1,0 +1,3 @@
+<div class="fixed z-50 flex flex-col gap-4 top-3 right-3">
+  <app-notification *ngFor="let notification of notifications$ | async" [notification]="notification"/>
+</div>

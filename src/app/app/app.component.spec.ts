@@ -2,11 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { provideRouter, RouterModule } from '@angular/router';
+import { NotificationsListComponent } from '../entities/Notification/components/notifications-list/notifications-list.component';
 
 describe('AppComponent', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [AppComponent, NotificationsListComponent],
       imports: [RouterModule],
       providers: [provideMockStore({ initialState: {} }), provideRouter([])],
     })

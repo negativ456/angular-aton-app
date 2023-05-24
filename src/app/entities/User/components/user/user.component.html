@@ -1,5 +1,5 @@
 <mat-card class="rounded border-2 p-2">
-  <img class="w-full rounded" mat-card-image [src]="user.avatar" alt="avatar">
+  <img class="w-full rounded object-cover desktop:h-72 mobile:h-32" mat-card-image [src]="user.avatar" alt="avatar">
   <mat-card-title>{{user.first_name}}</mat-card-title>
   <mat-card-title>{{user.last_name}}</mat-card-title>
   <mat-card-actions class="flex gap-4">

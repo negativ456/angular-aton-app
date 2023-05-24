@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ModalComponent } from './Modal/modal.component';
 import { MatTableModule } from '@angular/material/table';
 import { LoaderComponent } from './Loader/loader.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [ModalComponent, LoaderComponent],
   imports: [CommonModule],
@@ -26,6 +27,7 @@ import { LoaderComponent } from './Loader/loader.component';
     ModalComponent,
     MatTableModule,
     LoaderComponent,
+    MatPaginatorModule,
   ],
 })
 export class UiKitModule {}

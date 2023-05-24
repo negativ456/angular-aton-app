@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../../app.state';
+import { AppState } from '../../../../app/app.state';
 import { loginStart, setIsLoading } from '../../model/store/auth.actions';
 import { Observable } from 'rxjs';
 import { getLoading } from '../../model/store/auth.selectors';

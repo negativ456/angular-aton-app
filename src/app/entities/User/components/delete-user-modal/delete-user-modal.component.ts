@@ -4,10 +4,9 @@ import { User } from '../../model/types/user';
 import { UserService } from '../../model/services/user.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../../app.state';
-import { getLoading } from '../../../../shared/lib/state/common/common.selectors';
-import { setIsLoading } from '../../../../shared/lib/state/common/common.actions';
-import { deleteUserStart } from '../../model/state/user.action';
+import { AppState } from '../../../../app/app.state';
+import { deleteUserStart, setIsLoading } from '../../model/state/user.action';
+import { getUsersLoading } from '../../model/state/user.selectors';
 
 @Component({
   selector: 'app-delete-user-modal',
@@ -23,12 +22,13 @@ export class DeleteUserModalComponent implements OnInit {
   deleteUser() {
     const user = this.modalService.modalData;
     if (user) {
-      this.store.dispatch(setIsLoading({ status: true }));
+      this.store.dispatch(setIsLoading({ isLoading: true }));
       this.store.dispatch(deleteUserStart({ user }));
     }
   }
 
   ngOnInit() {
-    this.isLoading$ = this.store.select(getLoading);
+    this.isLoading$ = this.store.select(getUsersLoading);
+    console.log(this.isLoading$);
   }
 }

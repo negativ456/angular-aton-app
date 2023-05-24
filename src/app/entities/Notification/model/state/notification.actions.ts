@@ -1,8 +1,12 @@
 import { createAction, props } from '@ngrx/store';
-import { NotificationType } from '../const/notificationConst';
+import { Notification } from '../types/notification';
 
-export const openNotification = createAction(
-  '[notification] open',
-  props<{ message: string; notificationType: NotificationType }>()
+export const addNotification = createAction(
+  '[notification] add',
+  props<{ notification: Omit<Notification, 'id'> }>()
 );
-export const closeNotification = createAction('[notification] close');
+
+export const removeNotification = createAction(
+  '[notification] remove',
+  props<{ id: number }>()
+);

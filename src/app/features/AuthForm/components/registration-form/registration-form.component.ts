@@ -5,7 +5,7 @@ import { RegistrationForm } from '../../model/types/types';
 import { AuthService } from '../../model/service/auth.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../../app.state';
+import { AppState } from '../../../../app/app.state';
 import { setIsLoading, signupStart } from '../../model/store/auth.actions';
 import { getLoading } from '../../model/store/auth.selectors';
 

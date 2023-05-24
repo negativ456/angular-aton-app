@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../service/auth.service';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { AppState } from '../../../../app.state';
+import { AppState } from '../../../../app/app.state';
 import {
   autoLogin,
   loginStart,
@@ -14,8 +14,9 @@ import {
   signupSuccess,
 } from './auth.actions';
 import { exhaustMap, map, mergeMap, of } from 'rxjs';
-import { openNotification } from '../../../../entities/Notification/model/state/notification.actions';
 import { NotificationType } from '../../../../entities/Notification/model/const/notificationConst';
+import { addNotification } from '../../../../entities/Notification/model/state/notification.actions';
+import { getNotifications } from '../../../../entities/Notification/model/state/notification.selectors';
 
 @Injectable()
 export class AuthEffects {
@@ -36,9 +37,11 @@ export class AuthEffects {
             // this.store.dispatch(setErrorMessage({ message: '' }));
             this.authService.setUserInLocalStorage(action);
             this.store.dispatch(
-              openNotification({
-                message: 'Login is successful',
-                notificationType: NotificationType.SUCCESS,
+              addNotification({
+                notification: {
+                  message: 'Login is successful',
+                  notificationType: NotificationType.SUCCESS,
+                },
               })
             );
             this.router.navigate(['/users']);
@@ -65,9 +68,11 @@ export class AuthEffects {
             this.store.dispatch(setIsLoading({ isLoading: false }));
             this.authService.setUserInLocalStorage(action);
             this.store.dispatch(
-              openNotification({
-                message: 'Signup is successful',
-                notificationType: NotificationType.SUCCESS,
+              addNotification({
+                notification: {
+                  message: 'Signup is successful',
+                  notificationType: NotificationType.SUCCESS,
+                },
               })
             );
             this.router.navigate(['/users']);

@@ -1,13 +1,9 @@
-import { NotificationType } from '../const/notificationConst';
+import { Notification } from '../types/notification';
 
 export interface NotificationState {
-  notificationType: NotificationType;
-  message: string;
-  open: boolean;
+  notifications: Notification[];
 }
 
 export const initialState: NotificationState = {
-  notificationType: NotificationType.SUCCESS,
-  message: '',
-  open: false,
+  notifications: [],
 };

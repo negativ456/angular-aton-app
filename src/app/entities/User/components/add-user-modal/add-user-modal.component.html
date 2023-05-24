@@ -1,0 +1,28 @@
+<app-modal>
+  <div class="flex flex-col gap-2 items-center justify-center font-medium">
+    <p class="text-3xl">Do you want to create user ?</p>
+    <form class="gap-0.5 flex flex-col w-full" [formGroup]="form" (ngSubmit)="createUser()">
+      <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input formControlName="firstName" matInput placeholder="First name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last name</mat-label>
+        <input formControlName="lastName" matInput placeholder="Last name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Avatar</mat-label>
+        <input formControlName="avatar" matInput placeholder="Avatar">
+      </mat-form-field>
+      <div class="flex gap-4 justify-center">
+        <button type="submit" [disabled]="!form.valid" mat-ripple class="h-[38px] px-4 py-2 bg-green-400 rounded font-medium text-white">
+          <img *ngIf="isLoading$ | async; else text" class="h-full" src="assets/icons/loader.svg" alt="loader">
+          <ng-template #text>
+            Create
+          </ng-template>
+        </button>
+        <button (click)="modalService.close()" mat-ripple class="px-4 py-2 bg-red-400 rounded font-medium text-white">No</button>
+      </div>
+    </form>
+  </div>
+</app-modal>

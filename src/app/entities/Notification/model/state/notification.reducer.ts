@@ -1,24 +1,24 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from './notification.state';
-import { closeNotification, openNotification } from './notification.actions';
-import { NotificationType } from '../const/notificationConst';
+import { addNotification, removeNotification } from './notification.actions';
 
 export const NotificationReducer = createReducer(
   initialState,
-  on(openNotification, (state, action) => {
+  on(addNotification, (state, action) => {
     return {
       ...state,
-      message: action.message,
-      notificationType: action.notificationType,
-      open: true,
+      notifications: [
+        ...state.notifications,
+        { id: state.notifications.length, ...action.notification },
+      ],
     };
   }),
-  on(closeNotification, (state, action) => {
+  on(removeNotification, (state, action) => {
     return {
       ...state,
-      message: '',
-      notificationType: NotificationType.SUCCESS,
-      open: false,
+      notifications: state.notifications.filter(
+        (item) => item.id !== action.id
+      ),
     };
   })
 );

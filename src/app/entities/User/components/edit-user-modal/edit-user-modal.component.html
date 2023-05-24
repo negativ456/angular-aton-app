@@ -12,7 +12,7 @@
       </mat-form-field>
     </form>
     <div class="flex gap-4">
-      <button (click)="onEdit()" mat-ripple class="h-[36px] px-4 py-2 bg-green-400 rounded font-medium text-white">
+      <button [disabled]="!form.valid" (click)="onEdit()" mat-ripple class="h-[36px] px-4 py-2 bg-green-400 rounded font-medium text-white">
         <img *ngIf="isLoading$ | async; else text" class="h-full" src="assets/icons/loader.svg" alt="loader">
         <ng-template #text>
           Edit

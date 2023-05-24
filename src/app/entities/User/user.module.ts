@@ -8,6 +8,7 @@ import { EditUserModalComponent } from './components/edit-user-modal/edit-user-m
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserSkeletonComponent } from './components/user-skeleton/user-skeleton.component';
+import { AddUserModalComponent } from './components/add-user-modal/add-user-modal.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { UserSkeletonComponent } from './components/user-skeleton/user-skeleton.
     DeleteUserModalComponent,
     EditUserModalComponent,
     UserSkeletonComponent,
+    AddUserModalComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { UserSkeletonComponent } from './components/user-skeleton/user-skeleton.
     UsersListComponent,
     DeleteUserModalComponent,
     EditUserModalComponent,
+    AddUserModalComponent,
   ],
 })
 export class UserModule {}

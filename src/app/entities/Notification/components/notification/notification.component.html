@@ -1,7 +1,7 @@
 <div
-  [ngClass]="[(notificationType$ | async) === NotificationType.SUCCESS ? 'bg-green-400 border-green-500' : 'bg-red-400 border-red-500']"
-  class="fixed rounded z-50 justify-between p-3 top-3 right-3 flex items-center w-[175px] h-[75px] border-2 "
+  [ngClass]="[notification.notificationType === NotificationType.SUCCESS ? 'bg-green-400 border-green-500' : 'bg-red-400 border-red-500']"
+  class="rounded justify-between p-3 flex items-center min-w-[175px] h-[75px] border-2"
 >
-  <div class="text-white text-lg">{{message$ | async}}</div>
-  <div class="text-2xl text-white cursor-pointer" (click)="onClose()">&times;</div>
+  <div class="text-white text-lg">{{notification.message}}</div>
+  <div class="ml-3 text-2xl text-white cursor-pointer" (click)="onClose()">&times;</div>
 </div>
