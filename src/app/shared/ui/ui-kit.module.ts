@@ -12,8 +12,10 @@ import { ModalComponent } from './Modal/modal.component';
 import { MatTableModule } from '@angular/material/table';
 import { LoaderComponent } from './Loader/loader.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { GridIconComponent } from './grid-icon/grid-icon.component';
+import { TableIconComponent } from './table-icon/table-icon.component';
 @NgModule({
-  declarations: [ModalComponent, LoaderComponent],
+  declarations: [ModalComponent, LoaderComponent, GridIconComponent, TableIconComponent],
   imports: [CommonModule],
   exports: [
     MatButtonModule,

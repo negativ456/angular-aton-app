@@ -6,7 +6,9 @@ import {
   getUsersSuccess,
   updateUserSuccess,
   setIsLoading,
+  setUserView,
 } from './user.action';
+import { USER_VIEW_LOCALSTORAGE_KEY } from '../../../../shared/const/localstorageKeys';
 
 export const UserReducer = createReducer(
   initialState,
@@ -31,7 +33,6 @@ export const UserReducer = createReducer(
     };
   }),
   on(createUserSuccess, (state, action) => {
-    console.log([...state.users, action.user]);
     return {
       ...state,
       users: [...state.users, action.user],
@@ -41,6 +42,16 @@ export const UserReducer = createReducer(
     return {
       ...state,
       isLoading: action.isLoading,
+    };
+  }),
+  on(setUserView, (state, action) => {
+    localStorage.setItem(
+      USER_VIEW_LOCALSTORAGE_KEY,
+      JSON.stringify(action.userView)
+    );
+    return {
+      ...state,
+      userView: action.userView,
     };
   })
 );

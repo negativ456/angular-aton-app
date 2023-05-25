@@ -3,10 +3,11 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../app/app.state';
 
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
 
 import { UserService } from '../services/user.service';
 import {
+  autoUserView,
   createUserStart,
   createUserSuccess,
   deleteUserStart,
@@ -14,6 +15,7 @@ import {
   getUsersStart,
   getUsersSuccess,
   setIsLoading,
+  setUserView,
   updateUserStart,
   updateUserSuccess,
 } from './user.action';
@@ -164,6 +166,16 @@ export class UserEffects {
             );
           })
         );
+      })
+    );
+  });
+
+  autoUserView$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(autoUserView),
+      mergeMap(() => {
+        const userView = this.userService.getUserViewFromLocalStorage();
+        return of(setUserView({ userView }));
       })
     );
   });

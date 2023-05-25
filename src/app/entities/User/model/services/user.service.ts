@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../types/user';
 import { Observable, tap } from 'rxjs';
+import { USER_VIEW_LOCALSTORAGE_KEY } from '../../../../shared/const/localstorageKeys';
+import { UsersViews } from '../const/const';
 
 interface UserResponse {
   page: number;
@@ -42,5 +44,13 @@ export class UserService {
       `https://reqres.in/api/users`,
       user
     );
+  }
+
+  getUserViewFromLocalStorage() {
+    const userView = localStorage.getItem(USER_VIEW_LOCALSTORAGE_KEY);
+    if (userView) {
+      return JSON.parse(userView);
+    }
+    return UsersViews.GRID;
   }
 }

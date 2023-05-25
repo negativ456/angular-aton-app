@@ -1,4 +1,4 @@
-<div *ngIf="view === UsersViews.GRID; else table" class="grid desktop:grid-cols-5 mobile:grid-cols-2 gap-10">
+<div *ngIf="(userView$ | async) === UsersViews.GRID; else table" class="grid desktop:grid-cols-5 mobile:grid-cols-2 gap-10">
   <ng-container *ngIf="isLoading$ | async; else user">
     <app-user-skeleton *ngFor="let number of [].constructor(8)"/>
   </ng-container>
@@ -11,38 +11,35 @@
 
 
 <ng-template #table>
-<!--  <table mat-table [dataSource]="userService.users">-->
+  <div class="h-[250px] overflow-auto">
+    <table mat-table [dataSource]="users$">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="first_name" >
+        <th mat-header-cell *matHeaderCellDef>First Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef> Last name </th>
+        <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
 
-<!--    &lt;!&ndash; Position Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="id">-->
-<!--      <th mat-header-cell *matHeaderCellDef>Id. </th>-->
-<!--      <td mat-cell *matCellDef="let element"> {{element.id}} </td>-->
-<!--    </ng-container>-->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="modalService.open(Modals.EDIT_USER, element)" mat-ripple class="px-4 py-2 bg-neutral-600 text-white rounded">Edit</button>
+          <button (click)="modalService.open(Modals.DELETE_USER, element)" mat-ripple class="px-4 py-2 bg-red-500 rounded text-white font-bold ml-2">&times;</button>
+        </td>
+      </ng-container>
 
-<!--    &lt;!&ndash; Name Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="name">-->
-<!--      <th mat-header-cell *matHeaderCellDef> First Name </th>-->
-<!--      <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>-->
-<!--    </ng-container>-->
-
-<!--    &lt;!&ndash; Weight Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="weight">-->
-<!--      <th mat-header-cell *matHeaderCellDef> Last name </th>-->
-<!--      <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>-->
-<!--    </ng-container>-->
-
-<!--    &lt;!&ndash; Symbol Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="symbol">-->
-<!--      <th mat-header-cell *matHeaderCellDef> Symbol </th>-->
-<!--      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>-->
-<!--    </ng-container>-->
-
-<!--&lt;!&ndash;    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>&ndash;&gt;-->
-<!--  </table>-->
-
-<!--  <mat-paginator [pageSizeOptions]="[5, 10, 20]"-->
-<!--                 showFirstLastButtons-->
-<!--                 aria-label="Select page of periodic elements">-->
-<!--  </mat-paginator>-->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
 </ng-template>

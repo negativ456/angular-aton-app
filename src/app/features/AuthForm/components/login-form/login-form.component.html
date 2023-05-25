@@ -1,14 +1,14 @@
 <form [formGroup]="form" (ngSubmit)="submit()" class="w-96 h-56 p-4  rounded bg-white gap-0.5 flex flex-col">
   <mat-form-field>
     <mat-label>Email</mat-label>
-    <input formControlName="email" matInput placeholder="email">
+    <input id="LoginEmail" formControlName="email" matInput placeholder="email">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input type="password" formControlName="password" matInput placeholder="password">
+    <input id="LoginPassword" type="password" formControlName="password" matInput placeholder="password">
   </mat-form-field>
-  <button type="submit" class="rounded h-9 bg-cyan-300 flex justify-center items-center" mat-ripple>
-    <img *ngIf="isLoading$ | async; else text" class="h-full" src="assets/icons/loader.svg" alt="loader">
+  <button id="LoginButton" type="submit" class="rounded h-9 bg-cyan-300 flex justify-center items-center" mat-ripple>
+    <img id="LoginLoader" *ngIf="isLoading$ | async; else text" class="h-full" src="assets/icons/loader.svg" alt="loader">
     <!--    <app-loader *ngIf="isLoading$ | async; else text"/>-->
     <ng-template #text>
       Login

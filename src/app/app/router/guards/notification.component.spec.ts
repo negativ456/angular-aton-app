@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotificationComponent } from '../../../entities/Notification/components/notification/notification.component';
 import { provideMockStore } from '@ngrx/store/testing';
-import { AppState } from '../../app.state';
 import { NotificationType } from '../../../entities/Notification/model/const/notificationConst';
 
 describe('NotificationComponent', () => {
@@ -16,12 +15,12 @@ describe('NotificationComponent', () => {
 
     fixture = TestBed.createComponent(NotificationComponent);
     component = fixture.componentInstance;
-    (component.notification = {
+    component.notification = {
       id: 0,
       message: '',
       notificationType: NotificationType.SUCCESS,
-    }),
-      fixture.detectChanges();
+    };
+    fixture.detectChanges();
   });
 
   it('should create', () => {

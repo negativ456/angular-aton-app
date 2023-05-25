@@ -1,4 +1,8 @@
-<div>
-  <p *ngFor="let view of viewTypes" (click)="changeView(view.view)">{{view.text}}</p>
-  <p>Grid</p>
+<div class="flex items-center gap-4">
+  <div *ngFor="let userView of viewTypes" (click)="changeView(userView.view)" class="cursor-pointer">
+    <ndc-dynamic
+      [ndcDynamicComponent]="userView.img"
+      [ndcDynamicAttributes]="{class: view === userView.view ? 'text-green-600': ''}"
+    ></ndc-dynamic>
+  </div>
 </div>

@@ -13,10 +13,9 @@ import {
   signupStart,
   signupSuccess,
 } from './auth.actions';
-import { exhaustMap, map, mergeMap, of } from 'rxjs';
+import { catchError, exhaustMap, map, mergeMap, of } from 'rxjs';
 import { NotificationType } from '../../../../entities/Notification/model/const/notificationConst';
 import { addNotification } from '../../../../entities/Notification/model/state/notification.actions';
-import { getNotifications } from '../../../../entities/Notification/model/state/notification.selectors';
 
 @Injectable()
 export class AuthEffects {
@@ -46,14 +45,18 @@ export class AuthEffects {
             );
             this.router.navigate(['/users']);
             return loginSuccess({ userData: action });
+          }),
+          catchError((errResp) => {
+            this.store.dispatch(setIsLoading({ isLoading: false }));
+            return of(
+              addNotification({
+                notification: {
+                  message: 'Error while login in',
+                  notificationType: NotificationType.ERROR,
+                },
+              })
+            );
           })
-          // catchError((errResp) => {
-          //   this.store.dispatch(setIsLoading({ status: false }));
-          //   const errorMessage = this.authService.getErrorMessage(
-          //     errResp.error.error.message
-          //   );
-          //   return of(setErrorMessage({ message: errorMessage }));
-          // })
         );
       })
     );
@@ -77,6 +80,17 @@ export class AuthEffects {
             );
             this.router.navigate(['/users']);
             return signupSuccess({ userData: action });
+          }),
+          catchError((errResp) => {
+            this.store.dispatch(setIsLoading({ isLoading: false }));
+            return of(
+              addNotification({
+                notification: {
+                  message: 'Error while registration',
+                  notificationType: NotificationType.ERROR,
+                },
+              })
+            );
           })
         );
       })

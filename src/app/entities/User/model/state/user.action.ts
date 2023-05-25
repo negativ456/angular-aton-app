@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { User } from '../types/user';
+import { UsersViews } from '../const/const';
 
 export const getUsersStart = createAction(
   '[users] get users',
@@ -41,3 +42,10 @@ export const setIsLoading = createAction(
   '[users] set is loading',
   props<{ isLoading: boolean }>()
 );
+
+export const setUserView = createAction(
+  '[users] set user view',
+  props<{ userView: UsersViews }>()
+);
+
+export const autoUserView = createAction('[users] auto user view');

@@ -14,3 +14,8 @@ export const getTotalUsers = createSelector(
   getUsersState,
   (state) => state.usersTotal
 );
+
+export const getUserView = createSelector(
+  getUsersState,
+  (state) => state.userView
+);

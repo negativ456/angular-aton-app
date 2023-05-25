@@ -24,17 +24,38 @@
 
 ## Сущности (entities)
 
+[Notification](/src/app/entities/Notification)
 
-## Code scaffolding
+[User](/src/app/entities/User)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Фичи (features)
 
+[AuthForm](/src/app/features/AuthForm)
 
-## Running unit tests
+[view-switcher](/src/app/features/view-switcher)
 
-Run `ng test` to execute the unit tests   via [Karma](https://karma-runner.github.io).
+## Страницы (pages)
 
-## Running end-to-end tests
+`login-page` - страница авторизации пользователя
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+`users-page` - страница со списком пользователей
 
+## Widgets
+
+[Header](/src/app/widgets/Header)
+
+## Shared
+
+- Используемые ui компоненты
+
+`Modal`, `grid-icon`, `table-icon`, `ui components from material UI`
+
+- Const
+
+`localstorageKeys` - ключи для localstorage
+
+`Modals` - enum, содержащий типы модальных окон
+
+## Backend
+
+Данные получаются с помощью сервиса тестовых REST API - [Reqres](https://reqres.in/)
