@@ -25,15 +25,15 @@ export class AuthEffects {
     private store: Store<AppState>,
     private router: Router
   ) {}
-
+  // Action для обработки логина
   login$ = createEffect(() => {
     return this.actions$.pipe(
+      // Произойдет вызов после срабатывания action loginStart
       ofType(loginStart),
       exhaustMap((action) => {
         return this.authService.login(action).pipe(
           map((data) => {
             this.store.dispatch(setIsLoading({ isLoading: false }));
-            // this.store.dispatch(setErrorMessage({ message: '' }));
             this.authService.setUserInLocalStorage(action);
             this.store.dispatch(
               addNotification({
@@ -44,14 +44,17 @@ export class AuthEffects {
               })
             );
             this.router.navigate(['/users']);
+            // После успешного срабатывания эффекта возвращаем экшн loginSuccess, в который передаем данные о пользователе
             return loginSuccess({ userData: action });
           }),
+          // Обрабатываем ошибку
           catchError((errResp) => {
             this.store.dispatch(setIsLoading({ isLoading: false }));
+            // В случае ошибки выводим уведомление о таковой
             return of(
               addNotification({
                 notification: {
-                  message: 'Error while login in',
+                  message: errResp.error.error,
                   notificationType: NotificationType.ERROR,
                 },
               })
@@ -83,10 +86,11 @@ export class AuthEffects {
           }),
           catchError((errResp) => {
             this.store.dispatch(setIsLoading({ isLoading: false }));
+            console.log(errResp);
             return of(
               addNotification({
                 notification: {
-                  message: 'Error while registration',
+                  message: errResp.error.error,
                   notificationType: NotificationType.ERROR,
                 },
               })

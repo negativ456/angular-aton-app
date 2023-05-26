@@ -19,6 +19,9 @@
 ## CI pipeline
 Конфигурация github actions ./github/workflows. В CI происходит проверка сборки проекта и unit тестирование 
 
+## Стилизация
+Для стилизации проекта используется [TailwindCSS](https://tailwindcss.com/)
+
 ## Работа с данными 
 Взаимодействие с данными осуществляется с помощью [NgRx](https://ngrx.io/docs)
 
@@ -59,3 +62,7 @@
 ## Backend
 
 Данные получаются с помощью сервиса тестовых REST API - [Reqres](https://reqres.in/)
+
+## Deploy
+
+Деплой приложения осуществляется с помощью github pages - https://negativ456.github.io/angular-aton-app

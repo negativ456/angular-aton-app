@@ -7,11 +7,11 @@
     <mat-label>Password</mat-label>
     <input id="LoginPassword" type="password" formControlName="password" matInput placeholder="password">
   </mat-form-field>
-  <button id="LoginButton" type="submit" class="rounded h-9 bg-cyan-300 flex justify-center items-center" mat-ripple>
+  <button [disabled]="!form.valid" id="LoginButton" type="submit" class="rounded h-9 bg-cyan-300 flex justify-center items-center" mat-ripple>
     <img id="LoginLoader" *ngIf="isLoading$ | async; else text" class="h-full" src="assets/icons/loader.svg" alt="loader">
-    <!--    <app-loader *ngIf="isLoading$ | async; else text"/>-->
     <ng-template #text>
       Login
     </ng-template>
     </button>
 </form>
+<p>Data for login: eve.holt@reqres.in, cityslicka</p>

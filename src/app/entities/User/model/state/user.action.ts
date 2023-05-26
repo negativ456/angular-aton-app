@@ -30,7 +30,7 @@ export const deleteUserSuccess = createAction(
 
 export const createUserStart = createAction(
   '[users] create user start',
-  props<{ user: Omit<User, 'id' | 'email'> }>()
+  props<{ user: Omit<User, 'id'> }>()
 );
 
 export const createUserSuccess = createAction(

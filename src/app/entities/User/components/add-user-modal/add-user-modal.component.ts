@@ -20,6 +20,7 @@ export class AddUserModalComponent implements OnInit {
     this.form = new FormGroup({
       firstName: new FormControl<string>('', [Validators.required]),
       lastName: new FormControl<string>('', [Validators.required]),
+      email: new FormControl<string>('', [Validators.email]),
       avatar: new FormControl<string>('', [Validators.required]),
     });
   }
@@ -37,6 +38,7 @@ export class AddUserModalComponent implements OnInit {
         user: {
           first_name: this.form.value.firstName,
           last_name: this.form.value.lastName,
+          email: this.form.value.email,
           avatar: this.form.value.avatar,
         },
       })

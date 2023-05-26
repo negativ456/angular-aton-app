@@ -7,11 +7,13 @@
     <mat-label>Password</mat-label>
     <input type="password" formControlName="password" matInput placeholder="password">
   </mat-form-field>
-  <button type="submit" class="rounded h-9 bg-cyan-300" mat-ripple>
+  <button [disabled]="!form.valid" type="submit" class="rounded h-9 bg-cyan-300 flex justify-center items-center" mat-ripple>
     <img *ngIf="isLoading$ | async; else text" class="h-full" src="assets/icons/loader.svg" alt="loader">
     <ng-template #text>
       Signup
     </ng-template>
   </button>
 </form>
+<p>Data for sign up: eve.holt@reqres.in, pistol</p>
+
 
